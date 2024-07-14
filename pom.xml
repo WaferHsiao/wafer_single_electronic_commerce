@@ -16,8 +16,6 @@
 	<modules>
 		<module>common</module>
 		<module>admin</module>
-		<module>admin</module>
-		<module>common</module>
 		<module>common</module>
 		<module>admin</module>
 		<module>portal</module>
@@ -32,6 +30,11 @@
 		<lombok.version>1.18.26</lombok.version>
 		<mybatis-plus.version>3.5.5</mybatis-plus.version>
 		<mysql-connector.version>8.0.33</mysql-connector.version>
+		<pagehelper-starter.version>2.1.0</pagehelper-starter.version>		<druid.version>1.2.21</druid.version>
+		<druid.version>1.2.21</druid.version>
+		<hutool.version>5.8.16</hutool.version>
+		<springdoc-openapi.version>2.3.0</springdoc-openapi.version>
+		<logstash-logback.version>7.4</logstash-logback.version>
 	</properties>
 
 	<dependencies>
@@ -63,6 +66,18 @@
 			</exclusions>
 		</dependency>
 
+		<!-- Spring Boot Actuator Starter：提供生产环境准备就绪的特性，如度量指标、健康检查和监控 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Spring Boot AOP Starter：添加对面向切面编程（AOP）的支持，允许声明式事务管理、方法拦截等 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -88,6 +103,42 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql-connector.version}</version>
 			</dependency>
+
+			<!--MyBatis分页插件starter-->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${pagehelper-starter.version}</version>
+			</dependency>
+
+			<!--集成druid连接池-->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<!--SpringDoc相关依赖-->
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+				<version>${springdoc-openapi.version}</version>
+			</dependency>
+
+			<!--Hutool Java工具包-->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+
+			<!--集成logstash-->
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -99,5 +150,33 @@
 				</plugin>
 			</plugins>
 	</build>
+
+	<!--使用aliyun的镜像源提升依赖下载速度-->
+	<repositories>
+		<repository>
+			<id>aliyunmaven</id>
+			<name>aliyun</name>
+			<url>https://maven.aliyun.com/repository/public</url>
+		</repository>
+		<repository>
+			<id>central2</id>
+			<name>central2</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
+	<!--使用aliyun的镜像源提升插件下载速度-->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>aliyunmaven</id>
+			<name>aliyun</name>
+			<url>https://maven.aliyun.com/repository/public</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>central2</id>
+			<name>central2</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
